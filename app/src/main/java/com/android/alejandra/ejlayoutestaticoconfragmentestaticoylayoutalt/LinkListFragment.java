@@ -51,7 +51,7 @@ public class LinkListFragment extends ListFragment {
      * @param l        ListView
      * @param v        View sobre la que se pulsó
      * @param position posición que ocupa la vista sobre la que se pulsó, dentro de la listView
-     * @param id
+     * @param id id
      */
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
@@ -60,7 +60,7 @@ public class LinkListFragment extends ListFragment {
         //muestro el elemento seleccionado en diferente color
         getListView().setSelector(R.color.colorAccentTransparent);
         //obtengo la url
-        String url= LinkData.ITEM_MAP.get((String)l.getAdapter().getItem(position)).getEnlaceContenido();
+        String url= LinkData.ITEM_MAP.get(l.getAdapter().getItem(position)).getEnlaceContenido();
         //aviso a mi listener
         mListener.onListFragmentSelection(url);
 
@@ -73,12 +73,6 @@ public class LinkListFragment extends ListFragment {
      * CONSTRUCTOR BÁSICO
      */
     public LinkListFragment() {
-    }
-
-    //MÉTODO ACONSEJADO PARA INSTANCIAR FRAGMENTS QUE SUSTITUYE AL CONSTRUCTOR
-    public static LinkListFragment newInstance() {
-        LinkListFragment fragment = new LinkListFragment();
-        return fragment;
     }
 
 
@@ -95,7 +89,7 @@ public class LinkListFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
 
         //asigno adaptador
-        setListAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, LinkData.getStringArrayTutorialesTitulo()));
+        setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, LinkData.getStringArrayTutorialesTitulo()));
 
     }
 
