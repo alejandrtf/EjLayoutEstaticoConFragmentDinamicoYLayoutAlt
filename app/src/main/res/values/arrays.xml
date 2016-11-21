@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="lista_enlaces_tutoriales_Android">
+        <item>Tutorial Sgoliver</item>
+        <item>El androide libre</item>
+        <item>Código facilito</item>
+        <item>Universidad Politécnica de Valencia (Jesús Tomás)</item>
+        <item>Hermosa Programación</item>
+        <item>Tutoriales Point</item>
+        <item>Proyecto Simio</item>
+        <item>Android desde cero</item>
+    </string-array>
+
+    <string-array name="urls_enlaces_tutoriales_Android">
+        <item>http://www.sgoliver.net/blog/curso-de-programacion-android/indice-de-contenidos/</item>
+        <item>http://www.elandroidelibre.com/2013/11/aprender-a-programar-en-android-desde-cero-gratuitamente.html</item>
+        <item>https://www.youtube.com/watch?v=sS3oDIcHNFo</item>
+        <item>http://www.androidcurso.com/index.php/tutoriales-android-fundamentos</item>
+        <item>http://www.hermosaprogramacion.com/android/</item>
+        <item>https://www.tutorialspoint.com/android/index.htm</item>
+        <item>http://www.proyectosimio.com/es/estructura-de-un-proyecto-android/</item>
+        <item>https://youtu.be/3IvfKtgFVMc?list=PLh_neeN4BQCmX4jC9pR_DgZVJ8a4PRMca</item>
+    </string-array>
+</resources>
