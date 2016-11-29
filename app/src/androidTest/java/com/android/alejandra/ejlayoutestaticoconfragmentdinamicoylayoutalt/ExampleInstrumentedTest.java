@@ -1,4 +1,4 @@
-package com.android.alejandra.ejlayoutestaticoconfragmentestaticoylayoutalt;
+package com.android.alejandra.ejlayoutestaticoconfragmentdinamicoylayoutalt;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

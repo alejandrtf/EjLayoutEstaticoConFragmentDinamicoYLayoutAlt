@@ -1,6 +1,4 @@
-package com.android.alejandra.ejlayoutestaticoconfragmentestaticoylayoutalt.model;
-
-import com.android.alejandra.ejlayoutestaticoconfragmentestaticoylayoutalt.R;
+package com.android.alejandra.ejlayoutestaticoconfragmentdinamicoylayoutalt.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
