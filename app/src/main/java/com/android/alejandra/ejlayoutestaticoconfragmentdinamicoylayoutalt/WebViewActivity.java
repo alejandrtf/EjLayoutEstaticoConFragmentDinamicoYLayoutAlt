@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
-public class WebViewActivity extends AppCompatActivity {
+public class WebViewActivity extends AppCompatActivity implements WebViewFragment.OnViewCreatedListener{
     public static final String EXTRA_URL = "com.android.alejandra.ejlayoutestaticoconfragmentdinamicoylayoutalt.EXTRA_URL";
     private WebViewFragment wvFragment;
     private FragmentManager mFragmentManager;
@@ -36,17 +36,24 @@ public class WebViewActivity extends AppCompatActivity {
             fragmentTransaction.commit();
             // Force Android to execute the committed FragmentTransaction
             mFragmentManager.executePendingTransactions();
+
         } else {
             //ya existe el fragment,pues la activity ya fue creada antes
             //Por tanto, lo recojo usando el mFragmentManager.
             wvFragment = (WebViewFragment) mFragmentManager.getFragments().get(0);
         }
+    }
 
+    /** Método del interface OnViewCreatedListener
+     *
+     */
+    @Override
+    public void onViewCreated() {
         if (!wvFragment.getActualUrl().equals(url)) {
             wvFragment.mostrarUrl(url);
         }
-
     }
+
 
 
 }

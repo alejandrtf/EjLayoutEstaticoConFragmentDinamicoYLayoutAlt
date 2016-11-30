@@ -9,13 +9,22 @@ import android.widget.FrameLayout;
 
 import com.android.alejandra.ejlayoutestaticoconfragmentdinamicoylayoutalt.model.LinkData;
 
-public class MainActivity extends AppCompatActivity implements LinkListFragment.OnListFragmentSelectionListener {
+public class MainActivity extends AppCompatActivity implements LinkListFragment.OnListFragmentSelectionListener,
+        WebViewFragment.OnViewCreatedListener {
+    //lo usaré para guardar el estado del fragment detalle
+    private static final String ID_WEBVIEW_FRAGMET = WebViewFragment.class.getSimpleName();
+
     //contenedor donde irá el fragment
     private FrameLayout contenedorLinkListFragment;
     //gestión de los fragments dinámicos
     private FragmentManager mFragmentManager;
     //fragment detalle
     private WebViewFragment wvFragment;
+    //saber si hay dos paneles o no
+    private boolean hayDosPaneles;
+
+    private String url;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +36,11 @@ public class MainActivity extends AppCompatActivity implements LinkListFragment.
                 getResources().getStringArray(R.array.urls_enlaces_tutoriales_Android));
 
         aniadirFragmentListado();
-
-
+        if(savedInstanceState!=null) {
+            //recupero el fragment guardado y la url
+            wvFragment = (WebViewFragment) getSupportFragmentManager().getFragment(savedInstanceState, ID_WEBVIEW_FRAGMET);
+            url=savedInstanceState.getString("url");
+        }
     }
 
 
@@ -49,13 +61,15 @@ public class MainActivity extends AppCompatActivity implements LinkListFragment.
 
         // Commit the FragmentTransaction
         fragmentTransaction.commit();
+
+        //averiguo si hay dos paneles o no
+        hayDosPaneles = getResources().getBoolean(R.bool.has_two_panels);
     }
 
 
     @Override
     public void onListFragmentSelection(String urlTutorialSeleccionado) {
-        boolean hayDosPaneles = getResources().getBoolean(R.bool.has_two_panels);
-
+        url = urlTutorialSeleccionado;
         if (hayDosPaneles) {
             //compruebo si se creo el segundo fragment ya, y si no, lo creo
             if (wvFragment == null) {
@@ -73,9 +87,7 @@ public class MainActivity extends AppCompatActivity implements LinkListFragment.
                 mFragmentManager.executePendingTransactions();
             }
 
-            //muestro la url
-            if (!wvFragment.getActualUrl().equals(urlTutorialSeleccionado))
-                wvFragment.mostrarUrl(urlTutorialSeleccionado);
+
         } else {
             //debo lanzar la activity WebViewActivity
             Intent i = new Intent(this, WebViewActivity.class);
@@ -84,4 +96,22 @@ public class MainActivity extends AppCompatActivity implements LinkListFragment.
         }
 
     }
+
+    @Override
+    public void onViewCreated() {
+        //muestro la url
+        if (!wvFragment.getActualUrl().equals(url))
+            wvFragment.mostrarUrl(url);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //guardo el fragment y la url
+        mFragmentManager.putFragment(outState,ID_WEBVIEW_FRAGMET,wvFragment);
+        outState.putString("url",url);
+    }
+
+
+
 }
